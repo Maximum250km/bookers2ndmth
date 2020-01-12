@@ -3,7 +3,9 @@ class BooksController < ApplicationController
   def show
   	@bookidv = Book.find(params[:id])
     @user = @bookidv.user
-    @book =Book.new
+    @comment = @bookidv.post_comments
+    @book = Book.new
+    @post_comment = PostComment.new
   end
 
   def index
@@ -44,7 +46,6 @@ class BooksController < ApplicationController
       @bookfail = @book
       @book = Book.find(params[:id])
   		render :edit
-  	
     end
  end
 
