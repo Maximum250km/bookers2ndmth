@@ -13,6 +13,20 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+    def follows
+    user = User.find(params[:id])
+    @users = user.followings
+    @user = User.find(params[:id])
+    @book = Book.new
+  end
+
+  def followers
+    user = User.find(params[:id])
+    @users = user.followers
+    @user = User.find(params[:id])
+    @book = Book.new
+  end
+
   def edit
   	@user = User.find(params[:id])
       if current_user != @user
