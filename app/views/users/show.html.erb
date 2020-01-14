@@ -19,7 +19,6 @@
 						<th>Opinion</th>
 						<th>favorites</th>
 						<th>commets</th>
-						<th>Subscribe?</th>
 					</tr>
 				</thead>
 
@@ -42,8 +41,9 @@
 							<% end %></td>
 							<td>
 								<% book.post_comments.count %>
-								<%= book.post_comments.count %>件コメント</td>
-							</tr>
+									<%= book.post_comments.count %>件コメント
+							</td>
+						</tr>
 							<% end %>
 						</tbody>
 					</table>

@@ -9,11 +9,11 @@
 		   <th>
         <%= link_to follows_user_path(user.id) do%>
 				<% user.followings.count %>
-				<p><%= user.followings.count %>フォロワー</p>
+				<p><%= user.followings.count %>フォワー</p>
 				<% end %>
 			</th>
 			<th>
-				<%= link_to follows_user_path(user.id) do%>
+				<%= link_to followers_user_path(user.id) do%>
 				<% user.followers.count %>
 				<p><%= user.followers.count %>フォロワー</p>
 				<% end %>

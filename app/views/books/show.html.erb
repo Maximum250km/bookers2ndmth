@@ -25,14 +25,8 @@
 				<td><%= @bookidv.body %></td>
 				<% if @bookidv.user_id == current_user.id %>
 				<% end %>
-				<td>
-					<% if @bookidv.favorited_by?(current_user) %>
-					<%= link_to "I hate", book_favorites_path(@bookidv), method: :delete %>
-					<%= @bookidv.favorites.count %> favorites
-					<% else %>
-					<%= link_to "I like", book_favorites_path(@bookidv), method: :post %>
-					<%= @bookidv.favorites.count %> favorites
-					<% end %>
+				<td id="like_<%= @bookidv.id %>">
+				<%= render 'books/likeorhate', book:@bookidv %>
 				</td>
 				<td><%= link_to "Edit",edit_book_path(@bookidv), class: "btn-sm btn-success edit_book_#{@bookidv.id}" %></td>
 				<td><%= link_to "Destroy",book_path(@bookidv), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@bookidv.id}" %></td>
@@ -43,32 +37,7 @@
 
 
 	<div class="container comments clearfix">
-		<div class="row">
-			<div class="col-sm-3">
-				<%= form_for [@bookidv, @post_comment] do |f| %>
-				<%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
-				<%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
-				<% end %>
-			</div>
-			<div class="col-sm-9">
-				<td> <p>commnets</p>
-					<% @bookidv.post_comments.count %> </a>
-					<h2 class="comment-count"><%= @bookidv.post_comments.count %>件コメント</h2></td>
-				</tr>
-			</table>
-			<table>
-				<thead>
-					<th>User</th>
-					<th>commnet</th>
-					<th>Posted at</th>
-				</thead>
-				<% @comment.each do |c| %>
-				<td><%= @bookidv.user.name %></td>
-				<td><%= c.comment %></td>
-				<td><%= @bookidv.created_at.strftime('%Y/%m/%d') %></td>
-				<% if @bookidv.user_id == current_user.id %>
-				<%= link_to "削除",  book_post_comment_path(c.book_id, c.id), method: :delete %>
-				<% end %>
-				<% end %>
-			</table>
-		</div>
+		<div id="comments">
+			<%= render 'books/commentform', book: @bookidv %>
+	    </div>
+	</div>
