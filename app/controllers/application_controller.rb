@@ -20,7 +20,7 @@ def after_sign_up_path_for(resource)
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :adress, :postal_number, :street, :address_building, :prefecture_code])
     #sign_upの際にnameのデータ操作を許。追加したカラム。
   end
 end
